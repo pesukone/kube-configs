@@ -1,0 +1,11 @@
+namespace: cert-manager
+version: 1.8.0
+nodeSelector:
+  node-type: master
+webhook:
+  nodeSelector:
+    node-type: master
+cainjector:
+  nodeSelector:
+    node-type: master
+installCRDs: true

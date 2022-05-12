@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: registry.localdomain-com-cert
+  namespace: container-registry
+spec:
+  secretName: registry.localdomain-com-cert-secret
+  isCA: true
+  commonName: '*.localdomain.com'
+  dnsNames:
+    - localdomain.com
+    - '*.localdomain.com'
+  issuerRef:
+    name: localdomain-ca-issuer
+    kind: ClusterIssuer
