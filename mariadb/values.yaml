@@ -1,0 +1,6 @@
+ports:
+  mysql:
+    port: 3306
+    expose: true
+    exposedPort: 3306
+    protocol: TCP

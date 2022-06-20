@@ -1,0 +1,30 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: docker-registry-ui
+  namespace: container-registry
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: "Host(`registry-ui.rotta.gt`)"
+      services:
+        - kind: Service
+          port: 80
+          name: docker-registry-ui-ui
+          namespace: container-registry
+      middlewares:
+        - name: docker-registry-ui-auth
+          namespace: container-registry
+  tls:
+    secretName: registry-ui-rotta-gt-cert-secret
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: docker-registry-ui-auth
+  namespace: container-registry
+spec:
+  basicAuth:
+    secret: docker-registry-ui-secret

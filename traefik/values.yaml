@@ -1,0 +1,14 @@
+---
+dashboard:
+  enabled: true
+ports:
+  mariadb:
+    port: 3306
+    expose: true
+    exposedPort: 3306
+    protocol: TCP
+additionalArguments:
+  "--api-dashboard": "true"
+  "--log.level": "INFO"
+  "--providers.kubernetesingress.ingressclass": "traefik"
+  "--serversTransport.insecureSkipVerify": "true"

@@ -1,0 +1,45 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami-https
+  namespace: playground
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: "Host(`whoami.rotta.gt`)"
+      kind: Rule
+      priority: 10
+      services:
+        - name: whoami
+          port: 80
+  tls:
+    secretName: whoami-rotta-gt-cert-secret
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami
+  namespace: playground
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: "Host(`whoami.rotta.gt`)"
+      kind: Rule
+      priority: 10
+      services:
+        - name: whoami
+          port: 80
+      middlewares:
+        - name: https-redirect
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: https-redirect
+  namespace: playground
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true

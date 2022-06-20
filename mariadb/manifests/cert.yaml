@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: registry-rotta-gt-cert
-  namespace: container-registry
+  name: mariadb-rotta-gt-cert
+  namespace: mariadb
 spec:
-  secretName: registry-rotta-gt-cert-secret
+  secretName: mariadb-rotta-gt-cert-secret
   isCA: true
   commonName: '*.rotta.gt'
   dnsNames:

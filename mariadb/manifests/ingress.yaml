@@ -1,30 +1,30 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: docker-registry
-  namespace: container-registry
+  name: mariadb
+  namespace: mariadb
 spec:
   entryPoints:
-    - websecure
+    - mariadb
   routes:
     - kind: Rule
-      match: "Host(`registry.rotta.gt`)"
+      match: "Host(`rotta.gt`)"
       services:
         - kind: Service
-          port: 5000
-          name: docker-registry
-          namespace: container-registry
-      middlewares:
-        - name: docker-registry-cors
-          namespace: container-registry
-  tls:
-    secretName: registry-rotta-gt-cert-secret
+          port: 3306
+          name: mariadb
+          namespace: mariadb
+          #middlewares:
+          #- name: mariadb-cors
+          #namespace: mariadb
+          #tls:
+          #secretName: mariadb-rotta-gt-cert-secret
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: docker-registry-cors
-  namespace: container-registry
+  name: mariadb-cors
+  namespace: mariadb
 spec:
   headers:
     accessControlAllowMethods:
@@ -34,7 +34,7 @@ spec:
       - POST
       - DELETE
     accessControlAllowOriginList:
-      - https://registry-ui.rotta.gt
+      - https://rotta.gt
     accessControlAllowCredentials: true
     accessControlMaxAge: 100
     addVaryHeader: true

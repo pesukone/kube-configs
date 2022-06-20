@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: registry-rotta-gt-cert
+  name: registry-ui-rotta-gt-cert
   namespace: container-registry
 spec:
-  secretName: registry-rotta-gt-cert-secret
+  secretName: registry-ui-rotta-gt-cert-secret
   isCA: true
   commonName: '*.rotta.gt'
   dnsNames:

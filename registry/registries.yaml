@@ -1,0 +1,13 @@
+mirrors:
+  "registry.rotta.gt":
+    endpoint:
+      - "https://registry.rotta.gt"
+configs:
+  "registry.rotta.gt":
+    auth:
+      username:
+      password:
+    tls:
+      cert_file: /tmp/container-registry/certs/cert_file.crt
+      key_file: /tmp/container-registry/certs/key_file.key
+      ca_file: /tmp/container-registry/certs/ca_file.crt
